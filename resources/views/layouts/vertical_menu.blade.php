@@ -7,8 +7,8 @@
             </li>
             <li><a href="#"><i class="font-primary" data-feather="edit"></i>اطلاع رسانی</a>
                 <ul>
-                    <li><a href="{{route('notification.form.email')}}">ارسال ایمیل</a></li>
-                    <li><a href="{{route('notification.form.sms')}}">ارسال پیام کوتاه</a></li>
+                    <li><a href="#">ارسال ایمیل</a></li>
+                    <li><a href="#">ارسال پیام کوتاه</a></li>
                 </ul>
             </li>
         </ul>
