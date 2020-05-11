@@ -24,6 +24,11 @@
         <div class="page-body vertical-menu-mt">
             <div class="container-fluid">
                 <div class="page-header">
+                    @if(session('mustVerifyEmail'))
+                        <div class="alert alert-warning">
+                        @lang('auth.you must verify your email')
+                        </div>
+                        @endif
                     <div class="row">
                         <div class="col">
                             @yield('breadcrumb')
