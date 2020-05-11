@@ -25,6 +25,7 @@ return [
         'user' => 'کاربر',
         'text' => 'متن پیام کوتاه',
         'name' => 'نام',
+        'last_name' => 'نام خانوادگی',
         'email' => 'ایمیل',
         'phone_number' => 'شماره تلفن',
         'password_confirmation' => 'تایید کلمه عبور',

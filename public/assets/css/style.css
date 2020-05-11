@@ -2753,7 +2753,7 @@ table tbody .border-bottom-warning td {
 }
 
 .bootstrap-datetimepicker-widget {
-	
+
 }
 
 .dropzone .dz-preview .dz-error-message {
@@ -10153,7 +10153,7 @@ ul .submenu input {
 	right: 40%;
 	margin-left: -10px;
 	padding: 0 5px;
-	content: "یا ثبت نام با";
+	content: "ثبت نام با";
 	color: #1b252a;
 	background: #fff
 }
@@ -10169,12 +10169,12 @@ ul .submenu input {
 .theme-form .login-divider:before {
 	position: absolute;
 	top: -11px;
-	right: 40%;
+	right: 46%;
 	margin-left: -10px;
 	padding: 0 5px;
 	color: #1b252a;
 	background: #fff;
-	content: "یا ورود با"
+	content: " ورود"
 }
 
 .theme-form .social .form-group {
@@ -36399,7 +36399,7 @@ body.dark-sidebar-body-mix .bookmark ul li a {
 }
 
 .social-widget-card h4 {
-	
+
 	color: #313131
 }
 
@@ -36445,13 +36445,13 @@ body.dark-sidebar-body-mix .bookmark ul li a {
 }
 
 .browser-widget .media-body h4 {
-	font-family: 
+    font-family: "iran", serif;
 	color: #313131;
 	margin-bottom: 0
 }
 
 .browser-widget .media-body h4 span {
-	font-family: "iran";
+    font-family: "iran", sans-serif;
 	color: #333333
 }
 
@@ -36502,12 +36502,12 @@ body.dark-sidebar-body-mix .bookmark ul li a {
 
 .cal-date-widget .cal-info h2 {
 	font-size: 100px;
-	
+
 	color: #e8ebf2
 }
 
 .cal-date-widget .cal-datepicker .datepicker--nav {
-	
+
 }
 
 .weather-widget-two {
@@ -36535,7 +36535,7 @@ body.dark-sidebar-body-mix .bookmark ul li a {
 }
 
 .weather-widget-two .num {
-	
+
 	font-weight: 600
 }
 
@@ -36606,7 +36606,7 @@ body.dark-sidebar-body-mix .bookmark ul li a {
 }
 
 .mobile-clock-widget .date {
-	
+
 }
 
 .mobile-clock-widget .sec {
@@ -36653,7 +36653,7 @@ body.dark-sidebar-body-mix .bookmark ul li a {
 }
 
 .calender-widget .cal-date {
-	
+
 	width: 100px;
 	height: 100px;
 	margin: 0 auto;
@@ -36923,7 +36923,7 @@ body.dark-sidebar-body-mix .bookmark ul li a {
 }
 
 .speed-chart .content h4 {
-	
+
 	font-weight: 600;
 	padding-top: 2px
 }

@@ -91,15 +91,17 @@
                             <li><a href="#"><i data-feather="mail"></i> صندوق ورودی</a></li>
                             <li><a href="#"><i data-feather="lock"></i> قفل صفحه</a></li>
                             <li><a href="#"><i data-feather="settings"></i> تنظیمات</a></li>
-                            <li><a href="#"><i data-feather="log-out"></i> خروج</a></li>
+                            <li>
+                                    <a class="dropdown" href="{{route('auth.logout')}}"><i data-feather="log-out"></i> خروج</a>
+                            </li>
                         </ul>
                     </li>
                 @endauth
 
                 @guest()
                     <div class="col-lg-auto">
-                        <button class="btn btn-info" href="#">@lang('public.login')</button>
-                        <button class="btn btn-info" type="submit" data-original-title="" title=""> @lang('public.register')</button>
+                        <a class="btn btn-info" href="{{route('auth.login.form')}}">@lang('public.login')</a>
+                        <a class="btn btn-info" href="{{route('auth.register.form')}}"> @lang('public.register')</a>
                     </div>
                 @endguest
             </ul>

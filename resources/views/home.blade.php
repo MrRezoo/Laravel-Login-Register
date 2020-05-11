@@ -3,5 +3,5 @@
 @section('title','home')
 
 @section('content')
-Home
+    @include('partials.alerts')
     @endsection
