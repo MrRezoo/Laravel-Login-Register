@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\VerifiesEmails;
+use Illuminate\Support\Facades\Auth;
 
 class VerificationController extends Controller
 {
@@ -19,7 +20,7 @@ class VerificationController extends Controller
     |
     */
 
-    use VerifiesEmails;
+    // use VerifiesEmails;
 
     /**
      * Where to redirect users after verification.
@@ -38,5 +39,21 @@ class VerificationController extends Controller
         $this->middleware('auth');
         $this->middleware('signed')->only('verify');
         $this->middleware('throttle:6,1')->only('verify', 'resend');
+    }
+
+    public function send()
+    {
+
+
+        if (Auth::user()->hasVerifiedEmail()){
+            return redirect()->route('home');
+        }
+        //get user
+        //create sign route
+        //send url
+        Auth::user()->sendEmailVerificationNotification();
+        //redirect
+        return back()->with('verificationEmailSent', true);
+
     }
 }

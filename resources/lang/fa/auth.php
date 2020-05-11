@@ -30,8 +30,8 @@ return [
     <a href=":link">این لینک</a>
     ایمیل تاییدیه برای شما ارسال خواهد شد.
     ',
-    'verification email sent' => 'ایمیل تاییدیه ارسال شد.',
     'email has verified' => 'ایمیل شما با موفقیت تایید شد.',
+    'verification email sent' => 'ایمیل تاییدیه ارسال شد.',
     'forgot password' => 'فراموشی رمزعبور',
     'request reset password' => 'ارسال لینک بازیابی',
     'reset link sent' => 'ایمیل بازیابی رمز عبور با موفقیت ارسال شد.',

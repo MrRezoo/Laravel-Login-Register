@@ -26,7 +26,8 @@ Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function () {
     Route::get('login','LoginController@showLoginForm')->name('auth.login.form');
     Route::post('login','LoginController@login')->name('auth.login');
     Route::get('logout','LoginController@logout')->name('auth.logout');
-
+    Route::get('email/send-verification','VerificationController@send')->name('auth.email.send.verification');
+    Route::get('email/verify','VerificationController@send')->name('auth.email.verify');
 });
 
 

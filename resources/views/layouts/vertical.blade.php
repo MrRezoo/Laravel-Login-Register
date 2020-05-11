@@ -26,8 +26,13 @@
                 <div class="page-header">
                     @if(session('mustVerifyEmail'))
                         <div class="alert alert-warning">
-                        @lang('auth.you must verify your email')
+                        @lang('auth.you must verify your email',['link'=>route('auth.email.send.verification')])
                         </div>
+                        @endif
+                        @if(session('verificationEmailSent'))
+                            <div class="alert alert-success text-center">
+                                @lang('auth.verification email sent')
+                            </div>
                         @endif
                     <div class="row">
                         <div class="col">
