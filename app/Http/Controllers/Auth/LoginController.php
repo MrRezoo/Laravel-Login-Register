@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -22,6 +23,8 @@ class LoginController extends Controller
     */
 
     use AuthenticatesUsers;
+    protected $maxAttempts = 2;
+
 
     /**
      * Where to redirect users after login.
@@ -48,14 +51,27 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
+
         //validate
         $this->validateForm($request);
+        // If the class is using the ThrottlesLogins trait, we can automatically throttle
+        // the login attempts for this application. We'll key this by the username and
+        // the IP address of the client making these requests into this application.
+        if ($this->hasTooManyLoginAttempts($request)) {
+            $this->sendLockoutResponse($request);
+        }
+
+        if ($this->attemptLogin($request)) {
+            return $this->sendLoginResponse();
+        }
         //check user and password
         if ($this->attemptLogin($request)) {
             return $this->sendLoginResponse();
-        } else {
-            return $this->sendFailedLoginResponse();
         }
+
+        $this->incrementLoginAttempts($request);
+        return $this->sendFailedLoginResponse();
+
         //login
 
         //redirect
@@ -63,7 +79,7 @@ class LoginController extends Controller
 
     protected function sendFailedLoginResponse()
     {
-        return back()->with('wrongCredentials',true);
+        return back()->with('wrongCredentials', true);
     }
 
     protected function sendLoginResponse()
@@ -91,5 +107,11 @@ class LoginController extends Controller
         session()->invalidate();
         Auth::logout();
         return redirect()->route('home');
+    }
+
+    protected function username()
+    {
+
+        return 'email';
     }
 }
