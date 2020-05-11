@@ -1,3 +1,7 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en" dir="rtl">
+
+
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -35,7 +39,7 @@
     <!-- Responsive css-->
     <link rel="stylesheet" type="text/css" href='{{asset("/assets/css/responsive.css")}}'>
 </head>
-<body></body>
+<body>
 
 <div class="page-wrapper">
     <div class="container-fluid">
@@ -50,70 +54,91 @@
                 <div class="card mt-4 p-4">
                     @include('partials.alerts')
                     <h4 class="text-center">@lang('auth.register user')</h4>
-                    <form class="theme-form">
+                    <form class="theme-form" action="{{route('auth.register')}}" method="POST">
+                        @csrf
                         <div class="form-row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <div class="offset-sm-3">
-                                        @include('partials.validation_error')
                                     </div>
                                     <label class="col-form-label" for="name">@lang('auth.name')</label>
-                                    <input class="form-control" type="text" name="name" id="name" value="{{old('name')}}"
+                                    <input class="form-control @error('name') is-invalid @enderror" type="text" name="name" id="name" value="{{old('name')}}"
                                            placeholder="@lang('auth.enter your name')">
+                                    @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="col-form-label" for="last_name">@lang('auth.last name')</label>
-                                    <input class="form-control" type="text" name="last_name" id="last_name" value="{{old('last_name')}}"
+                                    <input class="form-control @error('last_name') is-invalid @enderror" type="text" name="last_name" id="last_name" value="{{old('last_name')}}"
                                            placeholder="@lang('auth.enter your last name')">
+                                    @error('last_name')
+                                    <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-form-label" for="email">@lang('auth.email')</label>
-                            <input class="form-control" type="email" name="email" id="email" value="{{old('email')}}"
+                            <input class="form-control @error('email') is-invalid @enderror" type="email" name="email" id="email" value="{{old('email')}}"
                                    aria-describedby="emailHelp" placeholder="@lang('auth.enter your email')">
+                            @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label class="col-form-label" for="phone_number">@lang('auth.phone number')</label>
+                            <input class="form-control @error('phone_number') is-invalid @enderror " type="tel" name="phone_number" id="phone_number" value="{{old('phone_number')}}"
+                                   placeholder="@lang('auth.enter your phone number')">
+                            @error('phone_number')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label class="col-form-label" for="password">@lang('auth.password')</label>
-                            <input class="form-control" type="password" name="password" id="password"
+                            <input class="form-control @error('password') is-invalid @enderror" type="password" name="password" id="password"
                                    placeholder="@lang('auth.enter your password')">
+                            @error('password')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label class="col-form-label"
                                    for="password_confirmation">@lang('auth.confirm password')</label>
-                            <input class="form-control" type="password" name="password_confirmation"
+                            <input class="form-control @error('password_confirmation') is-invalid @enderror" type="password" name="password_confirmation"
                                    id="password_confirmation" placeholder="@lang('auth.confirm your password')">
-                        </div>
-                        <div class="form-group">
-                            <label class="col-form-label" for="phone_number">@lang('auth.phone number')</label>
-                            <input class="form-control" type="tel" name="phone_number" id="phone_number" value="{{old('phone_number')}}"
-                                   placeholder="@lang('auth.enter your phone number')">
+                            @error('password_confirmation')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
                         <div class="offset-sm-3">
-                            @include('partials.validation_error')
                         </div>
                         <div class="form-row">
                             <div class="col-sm-4">
-                                <button class="btn btn-primary" type="submit">@lang('auth.register')</button>
+                                <button class="btn btn-outline-primary-2x btn-block" type="submit">@lang('auth.register')</button>
                             </div>
                             <div class="col-sm-8">
-                                <button class="btn btn-outline-danger btn-block" type="submit">@lang('auth.early register')</button>
-
+                                <a class="btn btn-outline-danger-2x btn-block" href="{{route('auth.login.form')}}" type="submit">@lang('auth.early register')</a>
                             </div>
                         </div>
                         <div class="form-divider"></div>
-                        <div class="social mt-3">
-                            <div class="form-group btn-showcase d-flex">
-                                <button class="btn social-btn btn-fb d-inline-block"><i class="fa fa-facebook"></i>
-                                </button>
-                                <button class="btn social-btn btn-twitter d-inline-block"><i class="fa fa-twitter"></i>
-                                </button>
-                                <button class="btn social-btn btn-google d-inline-block"><i class="fa fa-google"></i>
-                                </button>
-                                <button class="btn social-btn btn-github d-inline-block"><i class="fa fa-github"></i>
-                                </button>
+                        <div class="social form-row mt-auto">
+                            <div class="col-sm-12">
+                                <button class="btn btn-google btn-block " href="{{route('auth.login.form')}}" ><i class="fa fa-google"></i></button>
                             </div>
                         </div>
                     </form>
@@ -123,6 +148,6 @@
         <!-- sign up page ends-->
     </div>
 </div>
-
-
+</body>
 @include('layouts.js')
+</html>
