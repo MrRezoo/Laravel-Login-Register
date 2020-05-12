@@ -24,6 +24,7 @@
         <div class="page-body vertical-menu-mt">
             <div class="container-fluid">
                 <div class="page-header">
+                    @include('partials.alerts')
                     @if(session('mustVerifyEmail'))
                         <div class="alert alert-warning">
                         @lang('auth.you must verify your email',['link'=>route('auth.email.send.verification')])
@@ -34,7 +35,6 @@
                                 @lang('auth.verification email sent')
                             </div>
                         @endif
-                        @include('partials.alerts')
                     <div class="row">
                         <div class="col">
                             @yield('breadcrumb')
