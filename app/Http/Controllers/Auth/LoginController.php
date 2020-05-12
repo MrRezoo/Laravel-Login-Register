@@ -43,12 +43,20 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
 
     public function showLoginForm()
     {
         return view('.auth.login');
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Validation\ValidationException
+     */
     public function login(Request $request)
     {
 
@@ -77,10 +85,17 @@ class LoginController extends Controller
         //redirect
     }
 
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     */
     protected function sendFailedLoginResponse()
     {
         return back()->with('wrongCredentials', true);
     }
+
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     */
 
     protected function sendLoginResponse()
     {
@@ -89,6 +104,9 @@ class LoginController extends Controller
 
     }
 
+    /**
+     * @param Request $request
+     */
     protected function validateForm(Request $request)
     {
         $request->validate([
@@ -97,11 +115,18 @@ class LoginController extends Controller
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @return bool
+     */
     protected function attemptLogin(Request $request)
     {
         return Auth::attempt($request->only('email', 'password'), $request->filled('remember'));
     }
 
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function logout()
     {
         session()->invalidate();
@@ -109,6 +134,9 @@ class LoginController extends Controller
         return redirect()->route('home');
     }
 
+    /**
+     * @return string
+     */
     protected function username()
     {
 

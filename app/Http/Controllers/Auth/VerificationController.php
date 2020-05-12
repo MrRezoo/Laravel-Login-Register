@@ -42,10 +42,11 @@ class VerificationController extends Controller
         $this->middleware('throttle:6,1')->only('verify', 'send');
     }
 
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function send()
     {
-
-
         if (Auth::user()->hasVerifiedEmail()){
             return redirect()->route('home');
         }
@@ -57,6 +58,10 @@ class VerificationController extends Controller
         return back()->with('verificationEmailSent', true);
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function verify(Request $request)
     {
 

@@ -9,13 +9,19 @@ use App\Mail\TestMail;
 use App\Mail\UserRegister;
 use http\Exception\InvalidArgumentException;
 
+/**
+ * Class EmailTypes
+ * @package App\Services\Notification\Constants
+ */
 class EmailTypes
 {
     const USER_REGISTERED = 1;
     const TEST_MAIL = 2;
     const FORGET_PASSWORD = 3;
 
-
+    /**
+     * @return array
+     */
     public static function toString()
     {
 
@@ -29,6 +35,10 @@ class EmailTypes
 
     }
 
+    /**
+     * @param $type
+     * @return mixed
+     */
     public static function toMail($type)
     {
         try {

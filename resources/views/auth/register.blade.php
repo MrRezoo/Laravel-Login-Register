@@ -138,7 +138,7 @@
                         <div class="form-divider"></div>
                         <div class="social form-row mt-auto">
                             <div class="col-sm-12">
-                                <button class="btn btn-google btn-block " href="{{route('auth.login.form')}}" ><i class="fa fa-google"></i></button>
+                                <button class="btn btn-danger btn-block " href="{{route('auth.login.form')}}" ><i class="fa fa-google"></i></button>
                             </div>
                         </div>
                     </form>

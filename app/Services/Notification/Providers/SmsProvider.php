@@ -34,6 +34,10 @@ class SmsProvider implements Provider
     /** @var string */
     protected $url_send_message;
 
+    /**
+     * @return mixed|\Psr\Http\Message\ResponseInterface|void
+     * @throws UserDoesNotHaveNumber
+     */
     public function send()
     {
 
@@ -54,6 +58,10 @@ class SmsProvider implements Provider
     /** @var User */
     protected $user;
 
+    /**
+     * @return array
+     * @throws UserDoesNotHaveNumber
+     */
     private function prepareDataForSms()
     {
         $this->havePhoneNumber();
@@ -74,6 +82,9 @@ class SmsProvider implements Provider
 
     }
 
+    /**
+     * @throws UserDoesNotHaveNumber
+     */
     private function havePhoneNumber()
     {
         if (is_null($this->user->phone_number)) {

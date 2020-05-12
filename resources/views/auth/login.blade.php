@@ -99,9 +99,12 @@
                                         >@lang('auth.forget your password?')</button>
                             </div>
                             <div class="login-divider"></div>
-                            <div class="social form-row mt-auto">
-                                <div class="col-sm-12">
-                                    <button class="btn btn-google btn-block " href="#"><i
+                            <div class="form-row social mt-auto">
+                                <div class="col-sm-4">
+                                    <button class="btn btn-primary btn-block" type="submit">@lang('auth.register')</button>
+                                </div>
+                                <div class="col-sm-8">
+                                    <button class="btn btn-danger btn-block " href="#"><i
                                             class="fa fa-google"></i></button>
                                 </div>
                             </div>

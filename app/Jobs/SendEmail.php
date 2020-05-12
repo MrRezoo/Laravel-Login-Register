@@ -36,9 +36,7 @@ class SendEmail implements ShouldQueue
 
     /**
      * Execute the job.
-     *
      * @param Notification $notification
-     * @return void
      */
     public function handle(Notification $notification)
     {

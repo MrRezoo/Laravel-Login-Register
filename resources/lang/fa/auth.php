@@ -16,7 +16,7 @@ return [
     'confirm your password' => 'کلمه عبور خود را تایید کنید ',
     'phone number' => 'شماره تلفن',
     'enter your phone number' => 'شماره تلفن خود را وارد کنید',
-    'early register' => '!قبلا ثبت نام کردی؟',
+    'early register' => 'قبلا ثبت نام کردی؟!',
     'remember me' => 'مرا به خاطر بسپار',
     'forget your password?' => 'رمز عبور خود را فراموش کرده‌اید؟',
     'recover password' => 'بازیابی رمز عبور',

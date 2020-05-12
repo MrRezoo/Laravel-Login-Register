@@ -3,14 +3,20 @@
 namespace App\Services\Notification;
 use App\Services\Notification\Providers\Contracts\Provider;
 
-
 /**
+ * Class Notification
  * @method sendSms(\App\User $user,String $text)
  * @method sendEmail(\App\User $user,\Illuminate\Mail\Mailable $mailable)
+ * @package App\Services\Notification
  */
 class Notification
 {
-
+    /**
+     * @param $method
+     * @param $arguments
+     * @return mixed
+     * @throws \Exception
+     */
     public function __call($method, $arguments)
     {
         // TODO: Implement __call() method.
