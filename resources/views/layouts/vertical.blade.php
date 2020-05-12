@@ -34,6 +34,7 @@
                                 @lang('auth.verification email sent')
                             </div>
                         @endif
+                        @include('partials.alerts')
                     <div class="row">
                         <div class="col">
                             @yield('breadcrumb')

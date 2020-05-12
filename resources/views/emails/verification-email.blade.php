@@ -3,7 +3,7 @@
 
 Dear {{$name}}
 
-@component('mail::button', ['url' => 'link'])
+@component('mail::button', ['url' => $link])
 Verify Your Email
 @endcomponent
 

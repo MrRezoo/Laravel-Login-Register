@@ -39,6 +39,6 @@ class VerificationEmail extends Mailable
 
      protected function generateUrl(){
 
-        return URL::temporarySignedRoute('auth.email.verify',now()->addMinutes(120),['email'=>$this->user->email]);
+        return URL::temporarySignedRoute('auth.email.verify',now()->addMinutes('120'),['email'=>$this->user->email]);
      }
 }
