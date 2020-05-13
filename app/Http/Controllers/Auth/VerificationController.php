@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Foundation\Auth\VerifiesEmails;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -61,9 +62,14 @@ class VerificationController extends Controller
     /**
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
+     * @throws AuthorizationException
      */
     public function verify(Request $request)
     {
+
+        if ($request->user()->email != $request->query('email')){
+            throw new AuthorizationException();
+        }
 
         // check email status
         if ($request->user()->hasVerifiedEmail()){
