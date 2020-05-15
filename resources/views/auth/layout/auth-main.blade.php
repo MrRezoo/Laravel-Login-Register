@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html lang="en" dir="rtl">
-@include('auth.auth-head')
+@include('auth.layout.auth-head')
 <body main-theme-layout="rtl">
 <div class="page-wrapper">
     <div class="container-fluid p-0">
@@ -17,5 +17,7 @@
 </div>
 
 @include('layouts.js')
+
 </body>
+
 </html>

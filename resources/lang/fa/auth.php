@@ -6,6 +6,8 @@ return [
     'register' => 'ثبت نام',
     'email' => 'ایمیل',
     'enter your email' => 'ایمیل خود را وارد کنید ',
+    'email send'=> 'ارسال ایمیل',
+    'forget password enter your email'=>'برای تنظیم مجدد رمز عبور ایمیل خود را وارد کنید',
     'name' => 'نام',
     'last name' => 'نام خانوادگی',
     'enter your last name' => 'نام خانوادگی را وارد کنید',

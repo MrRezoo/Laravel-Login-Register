@@ -40,4 +40,5 @@
     <link id="color" rel="stylesheet" href='{{asset("/assets/css/light-1.css")}}' media="screen">
     <!-- Responsive css-->
     <link rel="stylesheet" type="text/css" href='{{asset("/assets/css/responsive.css")}}'>
+    <script src="https://www.google.com/recaptcha/api.js?render={{ config('services.recaptcha.site_key') }}"></script>
 </head>

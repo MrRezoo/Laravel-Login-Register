@@ -28,6 +28,10 @@ Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function () {
     Route::get('logout','LoginController@logout')->name('auth.logout');
     Route::get('email/send-verification','VerificationController@send')->name('auth.email.send.verification');
     Route::get('email/verify','VerificationController@verify')->name('auth.email.verify');
+    Route::get('password/forget','ForgotPasswordController@showForgetForm')->name('auth.password.forget.form');
+    Route::post('password/forget','ForgotPasswordController@sendResetLink')->name('auth.password.forget');
+    Route::get('password/reset','ResetPasswordController@showResetForm')->name('auth.password.reset.form');
+    Route::post('password/reset','ResetPasswordController@reset')->name('auth.password.reset');
 });
 
 
