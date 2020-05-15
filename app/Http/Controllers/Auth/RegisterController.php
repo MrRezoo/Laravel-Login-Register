@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Events\UserRegistered;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use App\Rules\Recaptcha;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
@@ -106,8 +107,13 @@ class RegisterController extends Controller
             'last_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'phone_number' => ['numeric', 'digits:11', 'nullable']
-        ]);
+            'phone_number' => ['numeric', 'digits:11', 'nullable'],
+            'recaptcha' => ['required', new Recaptcha]
+        ],
+            [
+                'recaptcha' => __('auth.recaptcha')
+            ]
+        );
 
     }
 }
