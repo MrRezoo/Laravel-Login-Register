@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Jobs\SendEmail;
+use App\Mail\ResetPassword;
 use App\Mail\VerificationEmail;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -43,5 +44,11 @@ class User extends Authenticatable
     public function sendEmailVerificationNotification()
     {
         SendEmail::dispatch($this,new VerificationEmail($this));
+    }
+
+    public function sendPasswordResetNotification($token)
+    {
+        SendEmail::dispatch($this,new ResetPassword($this,$token));
+
     }
 }
