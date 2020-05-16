@@ -62,8 +62,7 @@
                                class="btn btn-primary btn-block">@lang('auth.register')</a>
                         </div>
                         <div class="col-sm-6">
-                            <button class="btn btn-danger btn-block " href="#"><i
-                                    class="fa fa-google"></i></button>
+                            <a class="btn btn-danger btn-block " href="{{route('auth.login.provider.redirect','google')}}">@lang('auth.login with google')</a>
                         </div>
                     </div>
                 </form>

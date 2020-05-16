@@ -32,6 +32,8 @@ Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function () {
     Route::post('password/forget','ForgotPasswordController@sendResetLink')->name('auth.password.forget');
     Route::get('password/reset','ResetPasswordController@showResetForm')->name('auth.password.reset.form');
     Route::post('password/reset','ResetPasswordController@reset')->name('auth.password.reset');
+    Route::get('redirect/{provider}','SocialController@redirectToProvider')->name('auth.login.provider.redirect');
+    Route::get('{provider}/callback','SocialController@providerCallback')->name('auth.login.provider.callback');
 });
 
 
