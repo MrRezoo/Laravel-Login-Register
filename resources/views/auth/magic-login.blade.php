@@ -1,6 +1,6 @@
 @extends('auth.layout.auth-main')
 
-@section('title' , __('auth.login'))
+@section('title' , __('auth.login with magic link'))
 
 @section('content')
     <div class="authentication-box">
@@ -9,7 +9,7 @@
             <div class="card-body">
                 @include('partials.alerts')
                 <div class="text-center">
-                    <h4>@lang('auth.login')</h4>
+                    <h4>@lang('auth.login with magic link')</h4>
                 </div>
                 <form class="theme-form" action="{{route('auth.magic.send.token')}}" method="POST">
                     @csrf
