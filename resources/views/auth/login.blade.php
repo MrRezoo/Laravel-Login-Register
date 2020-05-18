@@ -1,4 +1,8 @@
 @extends('auth.layout.auth-main')
+
+@section('title',__('auth.login'))
+
+
 @section('content')
     <div class="authentication-box">
         <div class="text-center"><img src="{{asset('/assets/images/endless-logo.png')}}" alt=""></div>
@@ -12,11 +16,11 @@
                     @csrf
                     <input type="hidden" name="recaptcha" id="recaptcha">
                     @error('recaptcha')
-                        <ul>
-                            <div class="alert alert-danger">
-                                {{$message}}
-                            </div>
-                        </ul>
+                    <ul>
+                        <div class="alert alert-danger">
+                            {{$message}}
+                        </div>
+                    </ul>
                     @enderror
                     <div class="form-group">
                         <label class="col-form-label" for="email">@lang('auth.email')</label>
@@ -44,9 +48,14 @@
                     </div>
                     <div class="offset-sm-3">
                     </div>
-                    <div class="checkbox p-0 ">
-                        <input type="checkbox" name="remember" id="remember">
-                        <label class="form-check-label" for="remember">@lang('auth.remember me')</label>
+                    <div class="form-row mt-auto">
+                        <div class="col-sm-6 p-1">
+                            <input type="checkbox" name="remember" id="remember">
+                            <small class="form-check-label" for="remember">@lang('auth.remember me')</small>
+                        </div>
+                        <div class="col-sm-6 text-right pt-1">
+                            <a href="{{route('auth.magic.login.form')}}"><small>@lang('auth.login with magic link')</small></a>
+                        </div>
                     </div>
                     <div class="form-group form-row mt-3 mb-0">
                         <button class="btn btn-primary btn-block " type="submit">@lang('auth.login')</button>
@@ -62,7 +71,8 @@
                                class="btn btn-primary btn-block">@lang('auth.register')</a>
                         </div>
                         <div class="col-sm-6">
-                            <a class="btn btn-danger btn-block " href="{{route('auth.login.provider.redirect','google')}}">@lang('auth.login with google')</a>
+                            <a class="btn btn-danger btn-block "
+                               href="{{route('auth.login.provider.redirect','google')}}">@lang('auth.login with google')</a>
                         </div>
                     </div>
                 </form>

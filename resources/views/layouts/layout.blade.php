@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" dir="rtl">
 
-@include('layouts.head')
+@include('layouts.css')
 <link rel="stylesheet" type="text/css" href='{{asset("/assets/css/owlcarousel.css")}}'>
 <body main-theme-layout="rtl">
 <!-- Loader starts-->
