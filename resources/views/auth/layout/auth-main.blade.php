@@ -12,7 +12,7 @@
     <link rel="icon" href='{{asset("/assets/images/favicon.png")}}' type="image/x-icon">
     <link rel="shortcut icon" href='{{asset("/assets/images/favicon.png")}}' type="image/x-icon">
     <title>@yield('title')</title>
-    @include('auth.layout.auth.css')
+    @include('auth.layout.auth-css')
     @yield('css')
     <script src="https://www.google.com/recaptcha/api.js?render={{ config('services.recaptcha.site_key') }}"></script>
 </head>
@@ -32,7 +32,7 @@
     </div>
 </div>
 
-@include('layouts.js')
+@include('auth.layout.js')
 @yield('js')
 
 </body>

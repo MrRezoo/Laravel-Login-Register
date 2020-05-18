@@ -1,5 +1,7 @@
 @extends('auth.layout.auth-main')
 
+@section('title',__('auth.register'))
+
 @section('content')
     <div class="authentication-box">
         <div class="text-center"><img src='{{asset("/assets/images/endless-logo.png")}}' alt=""></div>
