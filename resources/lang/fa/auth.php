@@ -3,6 +3,7 @@
 return [
     'register user' => 'ثبت نام کاربر',
     'login' => 'ورود',
+    'login normal' => 'ورود عادی',
     'register' => 'ثبت نام',
     'email' => 'ایمیل',
     'enter your email' => 'ایمیل خود را وارد کنید ',

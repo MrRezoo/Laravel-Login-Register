@@ -11,6 +11,9 @@
                 <div class="text-center">
                     <h4>@lang('auth.login with magic link')</h4>
                 </div>
+                <div class="text-center">
+                    <small style="color: red">*تنها کاربرانی که ثبت نام کردند میتوانند از این امکان استفاده کنند*</small>
+                </div>
                 <form class="theme-form" action="{{route('auth.magic.send.token')}}" method="POST">
                     @csrf
                     <input type="hidden" name="recaptcha" id="recaptcha">
@@ -39,13 +42,18 @@
                     <div class="form-row mt-auto">
                         <div class="col-sm-6 p-1">
                             <input type="checkbox" name="remember" id="remember">
-                            <label class="form-check-label" for="remember">@lang('auth.remember me')</label>
+                            <small class="form-check-label" for="remember">@lang('auth.remember me')</small>
+                        </div>
+                        <div class="col-sm-6 text-right pt-1">
+                            <a href="{{route('auth.login.form')}}"><small>@lang('auth.login normal')</small></a>
                         </div>
                     </div>
                     <div class="form-group form-row mt-3 mb-0">
-                        <button class="btn btn-outline-warning-2x btn-block " type="submit">@lang('auth.send magic link')</button>
+                        <button class="btn btn-outline-warning-2x btn-block "
+                                type="submit">@lang('auth.send magic link')</button>
+                        <a class="btn btn-outline-primary-2x btn-block"
+                               href="{{route('auth.register.form')}}" >@lang('auth.register')</a>
                     </div>
-
                 </form>
             </div>
         </div>
