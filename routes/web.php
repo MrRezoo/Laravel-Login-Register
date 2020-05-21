@@ -37,6 +37,14 @@ Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function () {
     Route::get('magic/login','MagicController@showMagicForm')->name('auth.magic.login.form');
     Route::post('magic/login','MagicController@sendToken')->name('auth.magic.send.token');
     Route::get('magic/login/{token}','MagicController@login')->name('auth.magic.login');
+    Route::get('two-factor/toggle','TwoFactorController@showToggleForm')->name('auth.two.factor.toggle.form');
+    Route::get('two-factor/activate','TwoFactorController@activate')->name('auth.two.factor.activate');
+    Route::get('two-factor/code','TwoFactorController@showEnterCodeForm')->name('auth.two.factor.code.form');
+    Route::post('two-factor/code','TwoFactorController@confirmCode')->name('auth.two.factor.code');
+    Route::get('two-factor/deactivate', 'TwoFactorController@deactivate')->name('auth.two.factor.deactivate');
+    Route::get('login/code', 'LoginController@showCodeForm')->name('auth.login.code.form');
+    Route::post('login/code', 'LoginController@confirmCode')->name('auth.login.code');
+    Route::get('two-factor/resent', 'TwoFactorController@resent')->name('auth.two.factor.resent');
 });
 
 

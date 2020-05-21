@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Code;
 use App\Providers\RouteServiceProvider;
 use App\Rules\Recaptcha;
+use App\Services\Auth\TwoFactorAuthentication;
+use App\TwoFactor;
+use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Http\Request;
@@ -25,6 +29,7 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
     protected $maxAttempts = 2;
+    protected $twoFactor;
 
 
     /**
@@ -37,11 +42,12 @@ class LoginController extends Controller
     /**
      * Create a new controller instance.
      *
-     * @return void
+     * @param TwoFactorAuthentication $twoFactor
      */
-    public function __construct()
+    public function __construct(TwoFactorAuthentication $twoFactor)
     {
         $this->middleware('guest')->except('logout');
+        $this->twoFactor = $twoFactor;
     }
 
     /**
@@ -50,7 +56,12 @@ class LoginController extends Controller
 
     public function showLoginForm()
     {
-        return view('.auth.login');
+        return view('auth.login');
+    }
+
+    public function showCodeForm()
+    {
+        return view('auth.two-factor.login-code');
     }
 
     /**
@@ -63,27 +74,54 @@ class LoginController extends Controller
 
         //validate
         $this->validateForm($request);
-        // If the class is using the ThrottlesLogins trait, we can automatically throttle
-        // the login attempts for this application. We'll key this by the username and
-        // the IP address of the client making these requests into this application.
         if ($this->hasTooManyLoginAttempts($request)) {
             $this->sendLockoutResponse($request);
         }
 
-        if ($this->attemptLogin($request)) {
-            return $this->sendLoginResponse();
+        if (!$this->isValidCredentials($request)) {
+            $this->incrementLoginAttempts($request);
+            return $this->sendFailedLoginResponse();
         }
-        //check user and password
-        if ($this->attemptLogin($request)) {
-            return $this->sendLoginResponse();
+        //does user enable twoFactor?
+        $user = $this->getUser($request);
+
+        if ($user->hasTwoFactor()) {
+            $this->twoFactor->requestCode($user);
+            return $this->sendHasTwoFactorResponse();
         }
-
-        $this->incrementLoginAttempts($request);
-        return $this->sendFailedLoginResponse();
-
         //login
-
+        Auth::login($user, $request->remember);
         //redirect
+        return $this->sendLoginResponse();
+
+        // If the class is using the ThrottlesLogins trait, we can automatically throttle
+        // the login attempts for this application. We'll key this by the username and
+        // the IP address of the client making these requests into this application.
+//
+//        if ($this->attemptLogin($request)) {
+//            return $this->sendLoginResponse();
+//        }
+//        //check user and password
+//        if ($this->attemptLogin($request)) {
+//            return $this->sendLoginResponse();
+//        }
+//
+//        $this->incrementLoginAttempts($request);
+//        return $this->sendFailedLoginResponse();
+
+    }
+
+    protected function confirmCode(Code $request)
+    {
+        $response = $this->twoFactor->login();
+        return $response == $this->twoFactor::AUTHENTICATED
+            ? $this->sendLoginResponse()
+            : back()->with('invalidCode', true);
+    }
+
+    protected function isValidCredentials(Request $request)
+    {
+        return Auth::validate($request->only(['email', 'password']));
     }
 
     /**
@@ -113,22 +151,22 @@ class LoginController extends Controller
         $request->validate([
             'email' => ['required', 'email', 'exists:users'],
             'password' => ['required'],
-            'recaptcha'=>['required',new Recaptcha]
+            'recaptcha' => ['required', new Recaptcha]
         ],
-             [
-            'recaptcha'=>__('auth.recaptcha')
+            [
+                'recaptcha' => __('auth.recaptcha')
             ]
         );
     }
 
-    /**
-     * @param Request $request
-     * @return bool
-     */
-    protected function attemptLogin(Request $request)
-    {
-        return Auth::attempt($request->only('email', 'password'), $request->filled('remember'));
-    }
+//    /**
+//     * @param Request $request
+//     * @return bool
+//     */
+//    protected function attemptLogin(Request $request)
+//    {
+//        return Auth::attempt($request->only('email', 'password'), $request->filled('remember'));
+//    }
 
     /**
      * @return \Illuminate\Http\RedirectResponse
@@ -147,5 +185,15 @@ class LoginController extends Controller
     {
 
         return 'email';
+    }
+
+    protected function getUser(Request $request)
+    {
+        return User::where('email', $request->email)->firstOrFail();
+    }
+
+    protected function sendHasTwoFactorResponse()
+    {
+        return redirect()->route('auth.login.code.form');
     }
 }

@@ -88,6 +88,7 @@
                         </div>
                         <ul class="profile-dropdown onhover-show-div p-20">
                             <li><a href="#"><i data-feather="user"></i>ویرایش پروفایل</a></li>
+                            <li><a href="{{route('auth.two.factor.toggle.form')}}"><i data-feather="shield"></i>احراز هویت</a></li>
                             <li><a href="#"><i data-feather="mail"></i> صندوق ورودی</a></li>
                             <li><a href="#"><i data-feather="lock"></i> قفل صفحه</a></li>
                             <li><a href="#"><i data-feather="settings"></i> تنظیمات</a></li>

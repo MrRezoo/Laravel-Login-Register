@@ -30,15 +30,27 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
-    'recaptcha'=>[
-        'site_key'=> env('RECAPTCHA_SITE_KEY'),
-        'secret_key'=>env('RECAPTCHA_SECRET_KEY')
+    'recaptcha' => [
+        'site_key' => env('RECAPTCHA_SITE_KEY'),
+        'secret_key' => env('RECAPTCHA_SECRET_KEY')
     ],
 
-    'google'=>[
-        'client_id'=>env('GOOGLE_CLIENT_ID'),
-        'client_secret'=>env('GOOGLE_CLIENT_SECRET'),
-        'redirect'=>env('GOOGLE_REDIRECT_LINK')
+    'google' => [
+        'client_id' => env('GOOGLE_CLIENT_ID'),
+        'client_secret' => env('GOOGLE_CLIENT_SECRET'),
+        'redirect' => env('GOOGLE_REDIRECT_LINK')
+    ],
+
+    'raygansms' => [
+        'user_name' => env('RAYGANSMS_USERNAME'),
+        'password' => env('RAYGANSMS_PASSWORD'),
+        'phone_number_sender' => env('RAYGANSMS_PHONE_NUMBER_SENDER'),
+        'phone_number_receiver' => env('RAYGANSMS_PHONE_NUMBER_RECEIVER')
+    ],
+
+    'sinchsms' => [
+        'Authorization' => env('SINCHSMS_AUTHORIZATION'),
+        'url' => env('SINCHSMS_URL'),
     ]
 
 ];

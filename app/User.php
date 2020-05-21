@@ -6,6 +6,7 @@ use App\Jobs\SendEmail;
 use App\Mail\ResetPassword;
 use App\Mail\VerificationEmail;
 use App\Services\Auth\MagicAuthentication;
+use App\Services\Auth\Traits\HasTwoFactor;
 use App\Services\Auth\Traits\MagicallyAuthenticate;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -13,7 +14,7 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use Notifiable , MagicallyAuthenticate;
+    use Notifiable , MagicallyAuthenticate,HasTwoFactor;
 
     /**
      * The attributes that are mass assignable.
